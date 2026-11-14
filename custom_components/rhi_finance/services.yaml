@@ -1,0 +1,56 @@
+record_stock:
+  fields:
+    movement:
+      required: true
+      selector:
+        object: {}
+record_interval:
+  fields:
+    observation:
+      required: true
+      selector:
+        object: {}
+    quotes:
+      required: true
+      selector:
+        object: {}
+    currency:
+      required: true
+      selector:
+        text: {}
+    repair_price:
+      required: false
+      selector:
+        boolean: {}
+get_stock_balance:
+  fields:
+    site:
+      required: true
+      selector:
+        text: {}
+    stock:
+      required: true
+      selector:
+        text: {}
+get_period:
+  fields:
+    basis:
+      required: true
+      selector:
+        text: {}
+    site:
+      required: true
+      selector:
+        text: {}
+    currency:
+      required: true
+      selector:
+        text: {}
+    start_at:
+      required: true
+      selector:
+        text: {}
+    end_at:
+      required: true
+      selector:
+        text: {}

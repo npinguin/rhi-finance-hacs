@@ -1,0 +1,36 @@
+name: Validate HACS Distribution
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: home-assistant/actions/hassfest@master
+      - uses: hacs/action@main
+        with:
+          category: integration
+          ignore: brands description topics
+      - name: Verify exact runtime inventory and protected architectures
+        run: |
+          python - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          root=Path('custom_components/rhi_finance')
+          p=json.loads(Path('DISTRIBUTION_SOURCE.json').read_text())
+          assert p['status']=='PROTECTED_TEST_CANDIDATE' and not p['approved_release'] and not p['basic_cutover_ready']
+          assert set(p['platforms'])=={'x86_64','aarch64'}
+          assert json.loads((root/'manifest.json').read_text())['version']==p['manifest_version']
+          files={f.relative_to(root).as_posix():hashlib.sha256(f.read_bytes()).hexdigest() for f in root.rglob('*') if f.is_file()}
+          assert files==p['runtime_files']
+          assert {k for k in files if k.endswith('.py')}=={'__init__.py','config_flow.py','sensor.py','diagnostics.py'}
+          assert len([k for k in files if k.endswith('.so')])==10
+          for f in (root/'brand').iterdir():
+              assert f.read_bytes()==(Path('brand')/f.name).read_bytes()
+          assert (root/'DISTRIBUTION_NOTICE.md').is_file() and (root/'GPL-3.0-only.txt').is_file()
+          print('Exact protected HACS distribution verified')
+          PY

@@ -1,0 +1,87 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Set up RHI Finance",
+        "description": "Install the manual-input Finance pilot. No existing energy or water costs are changed or imported automatically."
+      }
+    },
+    "abort": {
+      "already_configured": "RHI Finance is already installed."
+    }
+  },
+  "services": {
+    "record_stock": {
+      "name": "Record stock movement",
+      "description": "Record an explicit purchase, consumption or stocktake in the pilot ledger.",
+      "fields": {
+        "movement": {
+          "name": "movement",
+          "description": "Explicit pilot movement"
+        }
+      }
+    },
+    "record_interval": {
+      "name": "Record interval",
+      "description": "Record an explicit measured interval and historical tariff evidence.",
+      "fields": {
+        "observation": {
+          "name": "observation",
+          "description": "Explicit pilot observation"
+        },
+        "quotes": {
+          "name": "quotes",
+          "description": "Explicit pilot quotes"
+        },
+        "currency": {
+          "name": "currency",
+          "description": "Explicit pilot currency"
+        },
+        "repair_price": {
+          "name": "repair price",
+          "description": "Explicit pilot repair price"
+        }
+      }
+    },
+    "get_stock_balance": {
+      "name": "Get stock balance",
+      "description": "Read a stock balance, quantity and carrying value.",
+      "fields": {
+        "site": {
+          "name": "site",
+          "description": "Explicit pilot site"
+        },
+        "stock": {
+          "name": "stock",
+          "description": "Explicit pilot stock"
+        }
+      }
+    },
+    "get_period": {
+      "name": "Get period",
+      "description": "Read separate stock or metered period evidence.",
+      "fields": {
+        "basis": {
+          "name": "basis",
+          "description": "Explicit pilot basis"
+        },
+        "site": {
+          "name": "site",
+          "description": "Explicit pilot site"
+        },
+        "currency": {
+          "name": "currency",
+          "description": "Explicit pilot currency"
+        },
+        "start_at": {
+          "name": "start at",
+          "description": "Explicit pilot start at"
+        },
+        "end_at": {
+          "name": "end at",
+          "description": "Explicit pilot end at"
+        }
+      }
+    }
+  }
+}
