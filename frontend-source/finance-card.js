@@ -70,5 +70,5 @@ if(!customElements.get("rhi-finance-card"))customElements.define("rhi-finance-ca
 
 if(typeof window!=="undefined"){
  window.customCards=window.customCards||[];
- if(!window.customCards.some(card=>card.type==="rhi-finance-card"))window.customCards.push({type:"rhi-finance-card",name:"RHI Finance",description:"RHI Finance dashboard",preview:false});
+ if(!window.customCards.some(card=>card.type==="rhi-finance-card"))window.customCards.push({type:"rhi-finance-card",name:"Robotix Finance",description:"RHI Finance dashboard",preview:false});
 }
