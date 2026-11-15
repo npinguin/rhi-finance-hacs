@@ -288,6 +288,7 @@ const FINANCE_CSS=".finance-form{display:grid;gap:var(--rhi-space-3);grid-templa
 const fe=rhiUxEscape;
 function financeField(name,label,value="",required=true,type="text"){return '<label>'+fe(label)+'<input name="'+fe(name)+'" type="'+type+'" value="'+fe(value)+'" '+(required?'required':'')+'></label>';}
 class FinanceCard extends HTMLElement{
+ static getStubConfig(){return {type:"custom:rhi-finance-card"};}
  constructor(){super();this.attachShadow({mode:"open"});this.page="overview";this.generation=0;this.started=false;this.data=null;this.pending=null;this.edit=null;this.busy=false;}
  setConfig(config){this.config=config||{};this.started=false;this.generation++;this.start();}
  set hass(hass){const changed=this.h?.user?.id!==hass?.user?.id;this.h=hass;if(changed){this.generation++;this.started=false;this.data=null;this.pending=null;this.edit=null;this.busy=false;this.feedback=null;}this.start();}
@@ -349,3 +350,8 @@ class FinanceCard extends HTMLElement{
  }catch{if(seq===this.generation)this.feedback="failed";}finally{if(seq===this.generation){this.busy=false;this.render();}}}
 }
 if(!customElements.get("rhi-finance-card"))customElements.define("rhi-finance-card",FinanceCard);
+
+if(typeof window!=="undefined"){
+ window.customCards=window.customCards||[];
+ if(!window.customCards.some(card=>card.type==="rhi-finance-card"))window.customCards.push({type:"rhi-finance-card",name:"RHI Finance",description:"RHI Finance dashboard",preview:false});
+}
