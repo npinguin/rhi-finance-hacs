@@ -9,4 +9,4 @@ async def async_get_config_entry_diagnostics(hass, entry):
     return {"identity":{"domain":"rhi_finance","version":version},
             "health":entry.runtime_data.status(),"configuration":{"mode":"pilot"},
             "build_handoff":{"foundation_required":False},
-            "execution":{"automatic_ingestion":False},"publication":{"contract":"candidate_v1","cutover_ready":False}}
+            "execution":{"automatic_ingestion":entry.runtime_data.status()["automatic_ingestion"]},"publication":{"contract":"native_finance_candidate","cutover_ready":False}}

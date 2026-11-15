@@ -13,7 +13,9 @@ CONFIG_SCHEMA = _validate_config
 
 async def async_setup(hass, config):
     from .ha_runtime import register_services
+    from .frontend import async_register_frontend
     register_services(hass)
+    await async_register_frontend(hass)
     return True
 
 
@@ -21,9 +23,9 @@ async def async_setup_entry(hass, entry):
     from .ha_runtime import Runtime
     entry.runtime_data = Runtime(hass, entry)
     await entry.runtime_data.start()
-    await hass.config_entries.async_forward_entry_setups(entry, ["sensor"])
+    await hass.config_entries.async_forward_entry_setups(entry, ["sensor","binary_sensor"])
     return True
 
 
 async def async_unload_entry(hass, entry):
-    return await hass.config_entries.async_unload_platforms(entry, ["sensor"])
+    return await hass.config_entries.async_unload_platforms(entry, ["sensor","binary_sensor"])

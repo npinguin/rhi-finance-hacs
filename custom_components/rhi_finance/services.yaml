@@ -11,7 +11,7 @@ record_interval:
       selector:
         object: {}
     quotes:
-      required: true
+      required: false
       selector:
         object: {}
     currency:
@@ -37,7 +37,8 @@ get_period:
     basis:
       required: true
       selector:
-        text: {}
+        select:
+          options: [stock, metered, usage, summary]
     site:
       required: true
       selector:
@@ -47,10 +48,309 @@ get_period:
       selector:
         text: {}
     start_at:
-      required: true
+      required: false
       selector:
         text: {}
     end_at:
+      required: false
+      selector:
+        text: {}
+    start_date:
+      required: false
+      selector:
+        text: {}
+    end_date:
+      required: false
+      selector:
+        text: {}
+
+get_inventory:
+  fields:
+    site:
       required: true
       selector:
         text: {}
+    currency:
+      required: true
+      selector:
+        text: {}
+get_stock_history:
+  fields:
+    site:
+      required: true
+      selector:
+        text: {}
+    stock:
+      required: true
+      selector:
+        text: {}
+    limit:
+      required: false
+      selector:
+        number:
+          min: 1
+          max: 200
+          mode: box
+inventory_action:
+  fields:
+    site:
+      required: true
+      selector:
+        text: {}
+    stock:
+      required: true
+      selector:
+        text: {}
+    action:
+      required: true
+      selector:
+        text: {}
+    occurrence:
+      required: true
+      selector:
+        text: {}
+    occurred_at:
+      required: true
+      selector:
+        text: {}
+    quantity:
+      required: false
+      selector:
+        text: {}
+    amount:
+      required: false
+      selector:
+        text: {}
+    reason:
+      required: false
+      selector:
+        text: {}
+    carrier:
+      required: false
+      selector:
+        text: {}
+    unit:
+      required: false
+      selector:
+        text: {}
+    currency:
+      required: false
+      selector:
+        text: {}
+    display_name:
+      required: false
+      selector:
+        text: {}
+    expected_balance:
+      required: false
+      selector:
+        object: {}
+
+get_reporting_settings: {}
+set_reporting_settings:
+  fields:
+    site:
+      required: true
+      selector:
+        text: {}
+    currency:
+      required: true
+      selector:
+        text: {}
+
+get_tariffs:
+  fields:
+    site:
+      required: true
+      selector:
+        text: {}
+    currency:
+      required: true
+      selector:
+        text: {}
+register_tariff:
+  fields:
+    expected_revision:
+      required: true
+      selector:
+        number:
+          min: 0
+          mode: box
+    tariff_id:
+      required: true
+      selector:
+        text: {}
+    site:
+      required: true
+      selector:
+        text: {}
+    currency:
+      required: true
+      selector:
+        text: {}
+    carrier:
+      required: true
+      selector:
+        text: {}
+    unit:
+      required: true
+      selector:
+        text: {}
+    role:
+      required: true
+      selector:
+        select:
+          options: [supply, export, allocation]
+    rate:
+      required: true
+      selector:
+        text: {}
+    quality:
+      required: true
+      selector:
+        select:
+          options: [confirmed, estimated]
+    start_date:
+      required: true
+      selector:
+        text: {}
+    end_date:
+      required: true
+      selector:
+        text: {}
+
+record_usage:
+  fields:
+    observation:
+      required: true
+      selector:
+        object: {}
+    quotes:
+      required: false
+      selector:
+        object: {}
+    currency:
+      required: true
+      selector:
+        text: {}
+    repair_price:
+      selector:
+        boolean: {}
+record_manual_usage:
+  fields:
+    site:
+      required: true
+      selector:
+        text: {}
+    currency:
+      required: true
+      selector:
+        text: {}
+    carrier:
+      required: true
+      selector:
+        text: {}
+    unit:
+      required: true
+      selector:
+        text: {}
+    role:
+      required: true
+      selector:
+        select:
+          options: [supply, allocation]
+    quantity:
+      required: true
+      selector:
+        text: {}
+    occurrence:
+      required: true
+      selector:
+        text: {}
+    occurred_at:
+      required: true
+      selector:
+        text: {}
+get_usage_history:
+  fields:
+    site:
+      required: true
+      selector:
+        text: {}
+    currency:
+      required: true
+      selector:
+        text: {}
+    limit:
+      selector:
+        number:
+          min: 1
+          max: 200
+          mode: box
+
+set_stock_minimum:
+  fields:
+    site:
+      required: true
+      selector:
+        text: {}
+    stock:
+      required: true
+      selector:
+        text: {}
+    minimum:
+      required: true
+      selector:
+        text: {}
+    expected_minimum:
+      required: true
+      selector:
+        text: {}
+
+get_counter_sources:
+  fields:
+    site:
+      required: true
+      selector:
+        text: {}
+    currency:
+      required: true
+      selector:
+        text: {}
+set_counter_source:
+  fields:
+    expected_revision:
+      required: true
+      selector:
+        number:
+          min: 0
+          mode: box
+    registry_id:
+      required: true
+      selector:
+        text: {}
+    site:
+      required: true
+      selector:
+        text: {}
+    currency:
+      required: true
+      selector:
+        text: {}
+    carrier:
+      required: true
+      selector:
+        text: {}
+    unit:
+      required: true
+      selector:
+        text: {}
+    role:
+      required: true
+      selector:
+        select:
+          options: [supply, export, allocation]
+    enabled:
+      required: true
+      selector:
+        boolean: {}

@@ -82,6 +82,125 @@
           "description": "Explicit pilot end at"
         }
       }
+    },
+    "inventory_action": {
+      "name": "Record inventory action",
+      "description": "Record opening stock, purchase, use, count or value-only revaluation.",
+      "fields": {
+        "site": {
+          "name": "site",
+          "description": "Explicit site"
+        },
+        "stock": {
+          "name": "stock",
+          "description": "Explicit stock"
+        },
+        "action": {
+          "name": "action",
+          "description": "Explicit action"
+        },
+        "occurrence": {
+          "name": "occurrence",
+          "description": "Explicit occurrence"
+        },
+        "occurred_at": {
+          "name": "occurred at",
+          "description": "Explicit occurred at"
+        },
+        "quantity": {
+          "name": "quantity",
+          "description": "Explicit quantity"
+        },
+        "amount": {
+          "name": "amount",
+          "description": "Explicit amount"
+        },
+        "reason": {
+          "name": "reason",
+          "description": "Explicit reason"
+        },
+        "carrier": {
+          "name": "carrier",
+          "description": "Explicit carrier"
+        },
+        "unit": {
+          "name": "unit",
+          "description": "Explicit unit"
+        },
+        "currency": {
+          "name": "currency",
+          "description": "Explicit currency"
+        },
+        "expected_balance": {
+          "name": "expected balance",
+          "description": "Explicit expected balance"
+        },
+        "display_name": {
+          "name": "Stock name",
+          "description": "Human-readable name for new stock."
+        }
+      }
+    },
+    "get_inventory": {
+      "name": "Get inventory",
+      "description": "Read current stock balances and carrying value.",
+      "fields": {
+        "site": {
+          "name": "Site",
+          "description": "Configured site"
+        },
+        "currency": {
+          "name": "Currency",
+          "description": "Reporting currency"
+        }
+      }
+    },
+    "get_stock_history": {
+      "name": "Get stock history",
+      "description": "Read recent movements for a selected stock item.",
+      "fields": {
+        "site": {
+          "name": "Site",
+          "description": "Configured site"
+        },
+        "stock": {
+          "name": "Stock",
+          "description": "Stock identity"
+        },
+        "limit": {
+          "name": "Limit",
+          "description": "Maximum number of movements"
+        }
+      }
+    },
+    "get_reporting_settings": {
+      "name": "Read reporting settings",
+      "description": "Read the configured reporting scope."
+    },
+    "set_reporting_settings": {
+      "name": "Save reporting settings",
+      "description": "Set the reporting scope without changing the journal.",
+      "fields": {
+        "site": {
+          "name": "Site",
+          "description": "Site identity used by the ledger."
+        },
+        "currency": {
+          "name": "Currency",
+          "description": "Three-letter reporting currency."
+        }
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Finance dashboard card",
+        "description": "Optional Finance card; the ledger remains active when disabled.",
+        "data": {
+          "enable_ux": "Enable bundled dashboard card"
+        }
+      }
     }
   }
 }

@@ -1,6 +1,9 @@
 {
   "domain": "rhi_finance",
   "name": "RHI Finance",
+  "after_dependencies": [
+    "http"
+  ],
   "codeowners": [
     "@npinguin"
   ],
@@ -9,5 +12,5 @@
   "integration_type": "service",
   "iot_class": "local_push",
   "issue_tracker": "https://github.com/npinguin/rhi-finance-hacs/issues",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }
