@@ -63,6 +63,19 @@ get_period:
       required: false
       selector:
         text: {}
+    owner:
+      selector:
+        text: {}
+    asset_id:
+      selector:
+        text: {}
+    asset_ids:
+      selector:
+        object: {}
+    period:
+      selector:
+        select:
+          options: [day, week, month, year]
 
 get_inventory:
   fields:
@@ -165,6 +178,37 @@ get_tariffs:
       selector:
         text: {}
     currency:
+      required: true
+      selector:
+        text: {}
+get_tariff_quote:
+  fields:
+    site:
+      required: true
+      selector:
+        text: {}
+    currency:
+      required: true
+      selector:
+        text: {}
+    carrier:
+      required: true
+      selector:
+        text: {}
+    unit:
+      required: true
+      selector:
+        text: {}
+    role:
+      required: true
+      selector:
+        select:
+          options: [supply, export, allocation]
+    start_at:
+      required: true
+      selector:
+        text: {}
+    end_at:
       required: true
       selector:
         text: {}
@@ -354,3 +398,90 @@ set_counter_source:
       required: true
       selector:
         boolean: {}
+    owner:
+      selector:
+        text: {}
+    asset_id:
+      selector:
+        text: {}
+
+backfill_counter_history:
+  fields:
+    registry_id:
+      required: true
+      selector:
+        text: {}
+    start_date:
+      required: true
+      selector:
+        text: {}
+    end_date:
+      required: true
+      selector:
+        text: {}
+    expected_fingerprint:
+      selector:
+        text: {}
+
+set_tariff_provider:
+  fields:
+    expected_revision:
+      required: true
+      selector:
+        number:
+          min: 0
+          mode: box
+    registry_id:
+      required: true
+      selector:
+        text: {}
+    site_id:
+      required: true
+      selector:
+        text: {}
+    currency:
+      required: true
+      selector:
+        text: {}
+    carrier:
+      required: true
+      selector:
+        text: {}
+    unit:
+      required: true
+      selector:
+        text: {}
+    role:
+      required: true
+      selector:
+        select:
+          options: [supply, export, allocation]
+    selected:
+      required: true
+      selector:
+        boolean: {}
+
+record_supplier_statement:
+  fields:
+    statement:
+      required: true
+      selector:
+        object: {}
+
+import_interval_history:
+  fields:
+    rows:
+      required: true
+      selector:
+        object: {}
+    currency:
+      required: true
+      selector:
+        text: {}
+    evidence_id:
+      required: true
+      selector:
+        text: {}
+    expected_fingerprint:
+      selector:
+        text: {}
