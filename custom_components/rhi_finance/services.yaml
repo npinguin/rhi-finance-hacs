@@ -75,10 +75,37 @@ get_period:
     period:
       selector:
         select:
-          options: [day, week, month, year]
+          options: [hour, day, week, month, year]
+    include_activities:
+      selector:
+        boolean: {}
+    include_forecast_sources:
+      selector:
+        boolean: {}
+    include_asset_breakdown:
+      selector:
+        boolean: {}
+    include_tariffs:
+      selector:
+        boolean: {}
+    include_comparisons:
+      selector:
+        boolean: {}
+    include_next_forecast:
+      selector:
+        boolean: {}
 
 get_inventory:
   fields:
+    owner:
+      selector:
+        text: {}
+    asset_id:
+      selector:
+        text: {}
+    asset_ids:
+      selector:
+        object: {}
     site:
       required: true
       selector:
@@ -89,6 +116,15 @@ get_inventory:
         text: {}
 get_stock_history:
   fields:
+    owner:
+      selector:
+        text: {}
+    asset_id:
+      selector:
+        text: {}
+    asset_ids:
+      selector:
+        object: {}
     site:
       required: true
       selector:
@@ -106,6 +142,15 @@ get_stock_history:
           mode: box
 inventory_action:
   fields:
+    owner:
+      selector:
+        text: {}
+    asset_id:
+      selector:
+        text: {}
+    asset_ids:
+      selector:
+        object: {}
     site:
       required: true
       selector:
@@ -159,6 +204,58 @@ inventory_action:
       selector:
         object: {}
 
+get_finance_conditions:
+  fields:
+    site:
+      required: true
+      selector:
+        text: {}
+    currency:
+      required: true
+      selector:
+        text: {}
+set_finance_condition:
+  fields:
+    config:
+      required: true
+      selector:
+        object: {}
+    expected_revision:
+      required: true
+      selector:
+        number:
+          min: 0
+          mode: box
+publish_period_summary:
+  fields:
+    condition_id:
+      required: true
+      selector:
+        text: {}
+set_recurring_cost:
+  fields:
+    plan:
+      required: true
+      selector:
+        object: {}
+    expected_revision:
+      required: true
+      selector:
+        number:
+          min: 0
+          mode: box
+register_allocation_group:
+  fields:
+    expected_revision:
+      required: true
+      selector:
+        number:
+          min: 0
+          mode: box
+    group:
+      required: true
+      selector:
+        object: {}
 get_reporting_settings: {}
 set_reporting_settings:
   fields:
@@ -183,6 +280,12 @@ get_tariffs:
         text: {}
 get_tariff_quote:
   fields:
+    owner:
+      selector:
+        text: {}
+    asset_id:
+      selector:
+        text: {}
     site:
       required: true
       selector:
@@ -214,6 +317,24 @@ get_tariff_quote:
         text: {}
 register_tariff:
   fields:
+    billing_unit:
+      selector:
+        text: {}
+    billing_units_per_unit:
+      selector:
+        text: {}
+    replace_tariff_id:
+      selector:
+        text: {}
+    purchase:
+      selector:
+        object: {}
+    owner:
+      selector:
+        text: {}
+    asset_id:
+      selector:
+        text: {}
     expected_revision:
       required: true
       selector:
@@ -266,7 +387,11 @@ register_tariff:
 record_usage:
   fields:
     observation:
-      required: true
+      required: false
+      selector:
+        object: {}
+    native_source:
+      required: false
       selector:
         object: {}
     quotes:
@@ -302,9 +427,11 @@ record_manual_usage:
       required: true
       selector:
         select:
-          options: [supply, allocation]
+          options: [supply, allocation, purchase, expense]
     quantity:
-      required: true
+      selector:
+        text: {}
+    reported_amount:
       selector:
         text: {}
     occurrence:
@@ -334,6 +461,15 @@ get_usage_history:
 
 set_stock_minimum:
   fields:
+    owner:
+      selector:
+        text: {}
+    asset_id:
+      selector:
+        text: {}
+    asset_ids:
+      selector:
+        object: {}
     site:
       required: true
       selector:
@@ -393,7 +529,7 @@ set_counter_source:
       required: true
       selector:
         select:
-          options: [supply, export, allocation]
+          options: [supply, export, allocation, nonfinancial]
     enabled:
       required: true
       selector:
@@ -404,6 +540,13 @@ set_counter_source:
     asset_id:
       selector:
         text: {}
+    validity_registry_id:
+      selector:
+        text: {}
+    validity_state:
+      selector:
+        select:
+          options: ["on", "off"]
 
 backfill_counter_history:
   fields:
@@ -423,6 +566,45 @@ backfill_counter_history:
       selector:
         text: {}
 
+set_tariff_output:
+  fields:
+    expected_revision:
+      required: true
+      selector:
+        number:
+          min: 0
+          mode: box
+    site_id:
+      required: true
+      selector:
+        text: {}
+    currency:
+      required: true
+      selector:
+        text: {}
+    carrier:
+      required: true
+      selector:
+        text: {}
+    unit:
+      required: true
+      selector:
+        text: {}
+    role:
+      required: true
+      selector:
+        select:
+          options: [supply, export, allocation]
+    enabled:
+      required: true
+      selector:
+        boolean: {}
+    owner:
+      selector:
+        text: {}
+    asset_id:
+      selector:
+        text: {}
 set_tariff_provider:
   fields:
     expected_revision:
@@ -464,7 +646,12 @@ set_tariff_provider:
 record_supplier_statement:
   fields:
     statement:
-      required: true
+      selector:
+        object: {}
+    native_source:
+      selector:
+        object: {}
+    supersedes:
       selector:
         object: {}
 
