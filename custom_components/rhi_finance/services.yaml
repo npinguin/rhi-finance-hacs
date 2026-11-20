@@ -306,7 +306,7 @@ get_tariff_quote:
       required: true
       selector:
         select:
-          options: [supply, export, allocation]
+          options: [supply, export, allocation, replenishment]
     start_at:
       required: true
       selector:
@@ -365,7 +365,7 @@ register_tariff:
       required: true
       selector:
         select:
-          options: [supply, export, allocation]
+          options: [supply, export, allocation, replenishment]
     rate:
       required: true
       selector:
@@ -594,7 +594,7 @@ set_tariff_output:
       required: true
       selector:
         select:
-          options: [supply, export, allocation]
+          options: [supply, export, allocation, replenishment]
     enabled:
       required: true
       selector:
@@ -637,7 +637,7 @@ set_tariff_provider:
       required: true
       selector:
         select:
-          options: [supply, export, allocation]
+          options: [supply, export, allocation, replenishment]
     selected:
       required: true
       selector:
